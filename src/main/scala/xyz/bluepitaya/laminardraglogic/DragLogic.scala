@@ -12,8 +12,8 @@ object DragLogic {
 
   // TODO: documentation
   case class DraggingModule(
-      documentBindings: Seq[Binder[ReactiveElement.Base]],
-      componentBindings: String => Seq[Binder[ReactiveElement.Base]],
+      documentBindings: Seq[Binder.Base],
+      componentBindings: String => Seq[Binder.Base],
       componentEvents: String => EventStream[DragEvent]
   )
 
