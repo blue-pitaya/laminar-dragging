@@ -10,14 +10,16 @@ lazy val baseSettings = Seq(
 
 lazy val root = (project in file("."))
   .settings(baseSettings)
-  .enablePlugins(ScalaJSPlugin) 
+  .enablePlugins(ScalaJSPlugin)
   .settings(
     name := "laminar-drag-logic",
-    scalacOptions := Seq(
-      //"-Xlint"
-    ),
+    scalacOptions :=
+      Seq(
+        // "-Xlint"
+      ),
     libraryDependencies += "com.raquo" %%% "laminar" % "15.0.0-M7",
-    libraryDependencies += "org.scalatest" %%% "scalatest" % "3.2.15" % Test,
+    libraryDependencies += "xyz.bluepitaya" %%% "common-utils" % "1.0",
+    libraryDependencies += "org.scalatest" %%% "scalatest" % "3.2.15" % Test
   )
 
 lazy val example = (project in file("example"))
@@ -36,4 +38,4 @@ lazy val example = (project in file("example"))
     Compile / fullLinkJS / scalaJSLinkerOutputDirectory :=
       baseDirectory.value / "ui/sccode/"
   )
-  .enablePlugins(ScalaJSPlugin) 
+  .enablePlugins(ScalaJSPlugin)
