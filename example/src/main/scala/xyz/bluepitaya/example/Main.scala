@@ -2,12 +2,12 @@ package xyz.bluepitaya.example
 
 import com.raquo.laminar.api.L._
 import org.scalajs.dom
-import xyz.bluepitaya.laminardraglogic.DragLogic
 import xyz.bluepitaya.common.Vec2f
-import xyz.bluepitaya.laminardraglogic.DeltaPosDrag
+import xyz.bluepitaya.laminardragging.DeltaPosDrag
+import xyz.bluepitaya.laminardragging.Dragging
 
 object Main extends App {
-  val draggingModule = DragLogic.createModule()
+  val draggingModule = Dragging.createModule()
 
   val baseCirclePosition = Var(Vec2f(100, 100))
   val circlePosition = Var(baseCirclePosition.now())

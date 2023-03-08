@@ -1,4 +1,4 @@
-# Laminar drag logic
+# Laminar dragging
 
 This repo contains simple logic for dragging HTML element inside Laminar enviroment. Main module creates handlers for pointer events of dragging element and document, it's not using draggable HTML prop. Pointer events are wrapped into special drag events that can be passed to any Laminar Observable (e.g. EventBus or Observer).
 

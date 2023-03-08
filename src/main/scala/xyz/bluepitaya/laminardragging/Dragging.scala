@@ -1,10 +1,10 @@
-package xyz.bluepitaya.laminardraglogic
+package xyz.bluepitaya.laminardragging
 
 import com.raquo.laminar.api.L._
 import org.scalajs.dom
 import com.raquo.laminar.nodes.ReactiveElement
 
-object DragLogic {
+object Dragging {
   sealed trait DragEvent
   case class DragStart(e: dom.PointerEvent) extends DragEvent
   case class DragMove(e: dom.PointerEvent) extends DragEvent

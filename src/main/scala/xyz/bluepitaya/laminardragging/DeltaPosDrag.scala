@@ -1,4 +1,4 @@
-package xyz.bluepitaya.laminardraglogic
+package xyz.bluepitaya.laminardragging
 
 import com.raquo.laminar.api.L._
 import org.scalajs.dom
@@ -15,18 +15,18 @@ object DeltaPosDrag {
   private def eventToScreenPos(e: dom.PointerEvent) =
     Vec2f(e.screenX, e.screenY)
 
-  def getMapping(): DragLogic.DragEvent => DeltaPosDragEvent = {
+  def getMapping(): Dragging.DragEvent => DeltaPosDragEvent = {
     val dragStartPos = Var(Vec2f.zero)
 
     def deltaPos(e: dom.PointerEvent) = eventToScreenPos(e) - dragStartPos.now()
 
-    (e: DragLogic.DragEvent) => {
+    (e: Dragging.DragEvent) => {
       e match {
-        case DragLogic.DragStart(e) =>
+        case Dragging.DragStart(e) =>
           dragStartPos.set(eventToScreenPos(e))
           DragStart(e)
-        case DragLogic.DragMove(e) => DragMove(e, deltaPos(e))
-        case DragLogic.DragEnd(e)  => DragEnd(e, deltaPos(e))
+        case Dragging.DragMove(e) => DragMove(e, deltaPos(e))
+        case Dragging.DragEnd(e)  => DragEnd(e, deltaPos(e))
       }
     }
   }
