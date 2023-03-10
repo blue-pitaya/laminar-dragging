@@ -4,6 +4,8 @@ import com.raquo.laminar.api.L._
 import org.scalajs.dom
 import com.raquo.laminar.nodes.ReactiveElement
 
+// TODO: prevent default & stop propagation setting for user to define
+
 object Dragging {
   sealed trait DragEvent
   case class DragStart(e: dom.PointerEvent) extends DragEvent
@@ -29,15 +31,14 @@ object Dragging {
     val currentDraggingId = Var[Option[String]](None)
     val internalDragEventBus = new EventBus[InternalDragEvent]
 
-    // TODO: think if i should preventDefault and stopPropagation on these document events (while dragging is active)
     val documentBindings = Seq(
       // only handle move events while dragging
-      documentEvents(_.onPointerUp)
+      documentEvents(_.onPointerUp.preventDefault.stopPropagation)
         .compose(_.withCurrentValueOf(currentDraggingId))
         .collect { case (e, Some(id)) =>
           End(e, id)
         } --> internalDragEventBus,
-      documentEvents(_.onPointerMove)
+      documentEvents(_.onPointerMove.preventDefault.stopPropagation)
         .compose(_.withCurrentValueOf(currentDraggingId))
         .collect { case (e, Some(id)) =>
           Move(e, id)
@@ -50,9 +51,10 @@ object Dragging {
         } --> currentDraggingId
     )
 
-    // TODO: prevent default & stop propagation (optional?)
-    def componentBindings(id: String) =
-      Seq(onPointerDown.map(e => Start(e, id)) --> internalDragEventBus)
+    def componentBindings(id: String) = Seq(
+      onPointerDown.preventDefault.stopPropagation.map(e => Start(e, id)) -->
+        internalDragEventBus
+    )
 
     def componentEvents(id: String) = {
       internalDragEventBus
