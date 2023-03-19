@@ -13,23 +13,23 @@ object Dragging {
   case class DragEnd(e: dom.PointerEvent) extends DragEvent
 
   // TODO: documentation
-  case class DraggingModule(
+  case class DraggingModule[A](
       documentBindings: Seq[Binder.Base],
-      componentBindings: String => Seq[Binder.Base],
-      componentEvents: String => EventStream[DragEvent]
+      componentBindings: A => Seq[Binder.Base],
+      componentEvents: A => EventStream[DragEvent]
   )
 
-  private sealed trait InternalDragEvent
-  private case class Start(e: dom.PointerEvent, id: String)
-      extends InternalDragEvent
-  private case class Move(e: dom.PointerEvent, id: String)
-      extends InternalDragEvent
-  private case class End(e: dom.PointerEvent, id: String)
-      extends InternalDragEvent
+  private sealed trait InternalDragEvent[A]
+  private case class Start[A](e: dom.PointerEvent, id: A)
+      extends InternalDragEvent[A]
+  private case class Move[A](e: dom.PointerEvent, id: A)
+      extends InternalDragEvent[A]
+  private case class End[A](e: dom.PointerEvent, id: A)
+      extends InternalDragEvent[A]
 
-  def createModule(): DraggingModule = {
-    val currentDraggingId = Var[Option[String]](None)
-    val internalDragEventBus = new EventBus[InternalDragEvent]
+  def createModule[A](): DraggingModule[A] = {
+    val currentDraggingId = Var[Option[A]](None)
+    val internalDragEventBus = new EventBus[InternalDragEvent[A]]
 
     val documentBindings = Seq(
       // only handle move events while dragging
@@ -51,12 +51,12 @@ object Dragging {
         } --> currentDraggingId
     )
 
-    def componentBindings(id: String) = Seq(
+    def componentBindings(id: A) = Seq(
       onPointerDown.preventDefault.stopPropagation.map(e => Start(e, id)) -->
         internalDragEventBus
     )
 
-    def componentEvents(id: String) = {
+    def componentEvents(id: A) = {
       internalDragEventBus
         .events
         .collect {

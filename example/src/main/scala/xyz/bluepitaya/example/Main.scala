@@ -7,7 +7,7 @@ import xyz.bluepitaya.laminardragging.DeltaPosDrag
 import xyz.bluepitaya.laminardragging.Dragging
 
 object Main extends App {
-  val draggingModule = Dragging.createModule()
+  val draggingModule = Dragging.createModule[String]()
 
   val baseCirclePosition = Var(Vec2f(100, 100))
   val circlePosition = Var(baseCirclePosition.now())

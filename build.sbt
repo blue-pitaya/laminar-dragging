@@ -27,6 +27,8 @@ lazy val example = (project in file("example"))
   .settings(baseSettings)
   .settings(
     name := "laminar-dragging",
+    libraryDependencies += "com.raquo" %%% "laminar" % "15.0.0-M7",
+    libraryDependencies += "xyz.bluepitaya" %%% "common-utils" % "1.0",
     scalaJSLinkerConfig ~= {
       _.withModuleKind(ModuleKind.ESModule)
         .withOutputPatterns(OutputPatterns.fromJSFile("%s.js"))
