@@ -16,7 +16,8 @@ object Dragging {
   case class DraggingModule[A](
       documentBindings: Seq[Binder.Base],
       componentBindings: A => Seq[Binder.Base],
-      componentEvents: A => EventStream[DragEvent]
+      componentEvents: A => EventStream[DragEvent],
+      currentDraggingIdSignal: Signal[Option[A]]
   )
 
   private sealed trait InternalDragEvent[A]
@@ -69,7 +70,8 @@ object Dragging {
     DraggingModule(
       documentBindings = documentBindings,
       componentBindings = componentBindings,
-      componentEvents = componentEvents
+      componentEvents = componentEvents,
+      currentDraggingIdSignal = currentDraggingId.signal
     )
   }
 }
