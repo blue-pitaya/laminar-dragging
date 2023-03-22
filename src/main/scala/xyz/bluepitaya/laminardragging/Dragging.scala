@@ -34,12 +34,12 @@ object Dragging {
 
     val documentBindings = Seq(
       // only handle move events while dragging
-      documentEvents(_.onPointerUp.preventDefault.stopPropagation)
+      documentEvents(_.onPointerUp)
         .compose(_.withCurrentValueOf(currentDraggingId))
         .collect { case (e, Some(id)) =>
           End(e, id)
         } --> internalDragEventBus,
-      documentEvents(_.onPointerMove.preventDefault.stopPropagation)
+      documentEvents(_.onPointerMove)
         .compose(_.withCurrentValueOf(currentDraggingId))
         .collect { case (e, Some(id)) =>
           Move(e, id)

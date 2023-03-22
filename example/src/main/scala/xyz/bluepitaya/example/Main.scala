@@ -38,7 +38,8 @@ object Main extends App {
               pos + deltaPos
           } --> circlePosition
       )
-    )
+    ),
+    p("Example text to check document pointer events.")
   )
   val containerNode = dom.document.querySelector("#app")
 
