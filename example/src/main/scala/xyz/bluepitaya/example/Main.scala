@@ -3,7 +3,7 @@ package xyz.bluepitaya.example
 import com.raquo.laminar.api.L._
 import org.scalajs.dom
 import xyz.bluepitaya.common.Vec2f
-import xyz.bluepitaya.laminardragging.DeltaPosDrag
+import xyz.bluepitaya.laminardragging.DeltaDragging
 import xyz.bluepitaya.laminardragging.Dragging
 
 object Main extends App {
@@ -11,8 +11,9 @@ object Main extends App {
 
   val baseCirclePosition = Var(Vec2f(100, 100))
   val circlePosition = Var(baseCirclePosition.now())
-  val deltaPosEventMapping = DeltaPosDrag.getMapping()
+  val deltaPosEventMapping = DeltaDragging.getMapping()
 
+  import xyz.bluepitaya.laminardragging.DragEventKind._
   val app = div(
     border := "1px solid black",
     width := "500px",
@@ -30,9 +31,9 @@ object Main extends App {
           .componentEvents("1")
           .map(deltaPosEventMapping)
           .collect {
-            case DeltaPosDrag.DragMove(_, deltaPos) =>
+            case DeltaDragging.Event(_, Move, deltaPos) =>
               baseCirclePosition.now() + deltaPos
-            case DeltaPosDrag.DragEnd(_, deltaPos) =>
+            case DeltaDragging.Event(_, End, deltaPos) =>
               val pos = baseCirclePosition.now()
               baseCirclePosition.update(_ + deltaPos)
               pos + deltaPos
