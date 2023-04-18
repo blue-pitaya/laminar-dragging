@@ -6,7 +6,15 @@ import com.raquo.laminar.nodes.ReactiveElement
 
 // TODO: prevent default & stop propagation setting for user to define
 
+sealed trait DragEventKind
+object DragEventKind {
+  case object Start extends DragEventKind
+  case object Move extends DragEventKind
+  case object End extends DragEventKind
+}
+
 object Dragging {
+
   sealed trait DragEvent
   case class DragStart(e: dom.PointerEvent) extends DragEvent
   case class DragMove(e: dom.PointerEvent) extends DragEvent
