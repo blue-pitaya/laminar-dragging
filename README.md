@@ -2,7 +2,7 @@
 
 Simple dragging logic library for [Laminar](https://laminar.dev/). Library is based on handling and wrapping pointer events and **don't** depend on HTML draggable attribute.
 
-See [demo]() and [examples source]().
+See [demo]() and [examples source](https://github.com/blue-pitaya/laminar-dragging/tree/master/example/src/main/scala/xyz/bluepitaya/example).
 
 ## Instalation
 
@@ -95,3 +95,10 @@ Add position relative to container element.
 First version takes size of container once, so if container is resized dragging will be acting strange.
 
 Second version takes function `dom.Element => Boolean` as parameter and search for container element in event target hierarchy. That means size of container is always up to date, but dragging don't work outside container.
+
+## Development
+
+To run example page you need to:
+
+1. Run `sbt` -> `project example` -> `~fastLinkJS`
+2. Execute `yarn` (only once to install JS deps) -> `yarn dev` in `example/ui` dir.
