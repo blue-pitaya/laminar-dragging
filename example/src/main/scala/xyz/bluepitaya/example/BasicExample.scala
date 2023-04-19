@@ -12,7 +12,7 @@ object BasicExample {
     val eventKindLabel = Var[String]("Drag the square!")
 
     div(
-      // bindings for documents, put them in "parent" of dragging elements
+      // bindings for document events, put them in "parent" of dragging elements
       draggingModule.documentBindings,
       div(
         // binding function for dragging elements

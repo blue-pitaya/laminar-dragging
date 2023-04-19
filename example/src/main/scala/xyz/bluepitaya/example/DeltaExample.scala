@@ -10,18 +10,12 @@ object DeltaExample {
   def component() = {
     val draggingModule = Dragging.createModule[String]()
 
-    val baseCirclePosition = Var(Vec2f(100, 100))
-
     val lineEnd = Var[Option[Vec2f]](None)
-
-    val containerStyle =
-      Seq(border("1px solid black"), width("500px"), height("500px"))
 
     val circlePosition = Vec2f(250, 250)
 
     import xyz.bluepitaya.laminardragging.DragEventKind._
     div(
-      containerStyle,
       draggingModule.documentBindings,
       svg.svg(
         svg.width("100%"),
@@ -57,7 +51,8 @@ object DeltaExample {
                 )
               case None => emptyNode
             }
-      )
+      ),
+      Seq(border("1px solid black"), width("500px"), height("500px"))
     )
   }
 }

@@ -11,7 +11,7 @@ def component() = {
   val eventKindLabel = Var[String]("Drag the square!")
 
   div(
-    // bindings for documents, put them in "parent" of dragging elements
+    // bindings for document events, put them in "parent" of dragging elements
     draggingModule.documentBindings,
     div(
       // binding function for dragging elements
@@ -78,6 +78,25 @@ Basic `Dragging.Event` is not so useful and was created to be extended. There ar
 
 ### Delta position
 
-Link to example code.
+```scala
+draggingModule.componentEvents(id).map(DeltaDragging.getMapping())
 
-This module extends drag events to add information about relative position to position where dragging started.
+case class Event(e: dom.PointerEvent, kind: DragEventKind, deltaPos: Vec2f)
+```
+
+This module extends drag events to add information about relative position to position where dragging started. This can be easily used for "classic" dragging. See example `DeltaExample2.scala`.
+
+### Relative position
+
+```scala
+draggingModule.componentEvents(id).map(RelativeDragging.getMapping(container))
+draggingModule.componentEvents(id).map(RelativeDragging.getMappingDynamic(getContainerFn))
+
+case class Event(e: dom.PointerEvent, kind: DragEventKind, pos: Vec2f)
+```
+
+Add position relative to container element. 
+
+First version takes size of container once, so if container is resized dragging will be acting strange.
+
+Second version takes function `dom.Element => Boolean` as parameter and search for container element in event target hierarchy. That means size of container is always up to date, but dragging don't work outside container.
