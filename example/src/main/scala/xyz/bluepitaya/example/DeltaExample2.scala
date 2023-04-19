@@ -2,9 +2,9 @@ package xyz.bluepitaya.example
 
 import com.raquo.laminar.api.L._
 import org.scalajs.dom
-import xyz.bluepitaya.common.Vec2f
 import xyz.bluepitaya.laminardragging.DeltaDragging
 import xyz.bluepitaya.laminardragging.Dragging
+import xyz.bluepitaya.laminardragging.Vec2f
 
 object DeltaExample2 {
   def circleComponent(

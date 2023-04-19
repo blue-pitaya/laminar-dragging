@@ -1,6 +1,5 @@
 package xyz.bluepitaya.laminardragging
 
-import xyz.bluepitaya.common.Vec2f
 import com.raquo.laminar.api.L._
 import org.scalajs.dom
 

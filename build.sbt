@@ -13,12 +13,8 @@ lazy val root = (project in file("."))
   .enablePlugins(ScalaJSPlugin)
   .settings(
     name := "laminar-dragging",
-    scalacOptions :=
-      Seq(
-        // "-Xlint"
-      ),
+    scalacOptions := Seq("-Xlint"),
     libraryDependencies += "com.raquo" %%% "laminar" % "15.0.0-M7",
-    libraryDependencies += "xyz.bluepitaya" %%% "common-utils" % "1.0",
     libraryDependencies += "org.scalatest" %%% "scalatest" % "3.2.15" % Test
   )
 
@@ -28,7 +24,6 @@ lazy val example = (project in file("example"))
   .settings(
     name := "laminar-dragging",
     libraryDependencies += "com.raquo" %%% "laminar" % "15.0.0-M7",
-    libraryDependencies += "xyz.bluepitaya" %%% "common-utils" % "1.0",
     scalaJSLinkerConfig ~= {
       _.withModuleKind(ModuleKind.ESModule)
         .withOutputPatterns(OutputPatterns.fromJSFile("%s.js"))

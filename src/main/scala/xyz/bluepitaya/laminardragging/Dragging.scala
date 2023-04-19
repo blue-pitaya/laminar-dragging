@@ -2,7 +2,6 @@ package xyz.bluepitaya.laminardragging
 
 import com.raquo.laminar.api.L._
 import org.scalajs.dom
-import com.raquo.laminar.nodes.ReactiveElement
 
 // TODO: prevent default & stop propagation setting for user to define
 
