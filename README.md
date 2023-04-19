@@ -4,6 +4,8 @@ Simple dragging logic library for [Laminar](https://laminar.dev/). Library is ba
 
 See [demo]() and [examples source](https://github.com/blue-pitaya/laminar-dragging/tree/master/example/src/main/scala/xyz/bluepitaya/example).
 
+x
+
 ## Instalation
 
 Currently library isn't published anywhere, but it will changes soon.
@@ -90,7 +92,7 @@ draggingModule.componentEvents(id).map(RelativeDragging.getMappingDynamic(getCon
 case class Event(e: dom.PointerEvent, kind: DragEventKind, pos: Vec2f)
 ```
 
-Add position relative to container element. 
+Add position relative to container element.
 
 First version takes size of container once, so if container is resized dragging will be acting strange.
 
