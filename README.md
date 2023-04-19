@@ -1,8 +1,14 @@
 # Laminar dragging
 
-Simple Laminar bindings for dragging logic.
+Simple dragging logic library for [Laminar](https://laminar.dev/). Library is based on handling and wrapping pointer events and **don't** depend on HTML draggable attribute.
 
-Basic example:
+See [demo]() and [examples source]().
+
+## Instalation
+
+Currently library isn't published anywhere, but it will changes soon.
+
+## Basic example
 
 ```scala
 def component() = {
@@ -39,7 +45,7 @@ def component() = {
 }
 ```
 
-Function `Dragging.createModule[A]()` creates Laminar event handlers under the hood and return module:
+Function `Dragging.createModule[A]()` creates Laminar event handlers under the hood and return module defined below. Type parameter A is type of unique id for each dragging component.
 
 ```scala
 /** Dragging toolbox.
@@ -59,17 +65,6 @@ case class DraggingModule[A](
     componentEvents: A => EventStream[Event],
     currentDraggingIdSignal: Signal[Option[A]]
 )
-```
-
-Dragging events are simply wrappers for pointer events with information what part of dragging happened.
-
-```scala
-sealed trait DragEventKind
-object DragEventKind {
-  case object Start extends DragEventKind
-  case object Move extends DragEventKind
-  case object End extends DragEventKind
-}
 ```
 
 ## Extensions (mappings)
