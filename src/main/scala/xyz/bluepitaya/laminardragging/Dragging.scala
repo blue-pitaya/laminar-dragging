@@ -16,7 +16,17 @@ object DragEventKind {
 object Dragging {
   case class Event(e: dom.PointerEvent, kind: DragEventKind)
 
-  // TODO: documentation
+  /** Dragging toolbox.
+    *
+    * @param documentBindings
+    *   Pointer event bindings for document.
+    * @param componentBindings
+    *   Function for creating pointer event bindings in dragging element.
+    * @param componentEvents
+    *   Function for creating event stream of draggin events.
+    * @param currentDraggingIdSignal
+    *   Signal of current dragging id.
+    */
   case class DraggingModule[A](
       documentBindings: Seq[Binder.Base],
       componentBindings: A => Seq[Binder.Base],

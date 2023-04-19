@@ -6,14 +6,35 @@ import org.scalajs.dom
 
 object RelativeDragging {
   case class Event(e: dom.PointerEvent, kind: DragEventKind, pos: Vec2f)
-  case class ContainerNotFound(e: dom.PointerEvent, kind: DragEventKind)
 
+  /** Extends Throwable for convenience. */
+  case class ContainerNotFound(e: dom.PointerEvent, kind: DragEventKind)
+      extends Throwable
+
+  /** Warning! This class take size of container only once, so resizing
+    * container will produce undesired behavior. To handle resizing, please use
+    * getMappingDynamic.
+    *
+    * @param container
+    *   DOM object for container of in which dragging occurs.
+    * @return
+    *   Function mapping from basic event to custom event.
+    */
   def getMapping(container: dom.Element): Dragging.Event => Event = {
     val rect = container.getBoundingClientRect()
 
     (e: Dragging.Event) => Event(e.e, e.kind, getPos(rect, e.e))
   }
 
+  /** Search for container size in event target hierarchy.
+    *
+    * @param containerFn
+    *   Should return true when element is container for handling dragging
+    *   elements.
+    *
+    * @return
+    *   Mappinf from basic element to either error or custom event.
+    */
   def getMappingDynamic(
       containerFn: dom.Element => Boolean
   ): Dragging.Event => Either[ContainerNotFound, Event] = { dragEvent =>

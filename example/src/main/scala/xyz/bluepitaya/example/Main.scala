@@ -7,42 +7,20 @@ import xyz.bluepitaya.laminardragging.DeltaDragging
 import xyz.bluepitaya.laminardragging.Dragging
 
 object Main extends App {
-  val draggingModule = Dragging.createModule[String]()
-
-  val baseCirclePosition = Var(Vec2f(100, 100))
-  val circlePosition = Var(baseCirclePosition.now())
-  val deltaPosEventMapping = DeltaDragging.getMapping()
-
-  import xyz.bluepitaya.laminardragging.DragEventKind._
   val app = div(
-    border := "1px solid black",
-    width := "500px",
-    height := "500px",
-    draggingModule.documentBindings,
-    svg.svg(
-      svg.width := "100%",
-      svg.height := "100%",
-      svg.circle(
-        svg.cx <-- circlePosition.signal.map(_.x.toString()),
-        svg.cy <-- circlePosition.signal.map(_.y.toString()),
-        svg.r := "10",
-        draggingModule.componentBindings("1"),
-        draggingModule
-          .componentEvents("1")
-          .map(deltaPosEventMapping)
-          .collect {
-            case DeltaDragging.Event(_, Move, deltaPos) =>
-              baseCirclePosition.now() + deltaPos
-            case DeltaDragging.Event(_, End, deltaPos) =>
-              val pos = baseCirclePosition.now()
-              baseCirclePosition.update(_ + deltaPos)
-              pos + deltaPos
-          } --> circlePosition
-      )
+    h1("Basic example"),
+    BasicExample.component(),
+    h1("Delta position dragging example"),
+    DeltaExample.component(),
+    h1("Delta position dragging example - \"classic dragging\""),
+    DeltaExample2.component(),
+    h1("Relative dragging example"),
+    p(
+      "Dragging will not work outside container and circles are centered on drag."
     ),
-    p("Example text to check document pointer events.")
+    RelativeExample.component()
   )
-  val containerNode = dom.document.querySelector("#app")
 
+  val containerNode = dom.document.querySelector("#app")
   render(containerNode, app)
 }

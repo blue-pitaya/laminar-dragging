@@ -12,11 +12,14 @@ object DeltaDragging {
 
     (e: Dragging.Event) => {
       val screenPos = Vec2f(e.e.screenX, e.e.screenY)
-      val deltaPos = screenPos - dragStartPos.now()
 
-      if (e.kind == DragEventKind.Start) {
-        dragStartPos.set(screenPos)
-      }
+      val deltaPos =
+        if (e.kind == DragEventKind.Start) {
+          dragStartPos.set(screenPos)
+          Vec2f.zero
+        } else {
+          screenPos - dragStartPos.now()
+        }
 
       Event(e.e, e.kind, deltaPos)
     }
