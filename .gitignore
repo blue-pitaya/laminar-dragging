@@ -12,3 +12,6 @@ example/ui/dist/
 
 # Scala.js
 example/ui/sccode/
+
+# Personal building script
+dev.sh

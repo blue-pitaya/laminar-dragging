@@ -1,12 +1,12 @@
 # Laminar dragging
 
-Simple dragging logic library for [Laminar](https://laminar.dev/). Library is based on handling and wrapping pointer events and **don't** depend on HTML draggable attribute.
+Simple dragging logic library for [Laminar](https://laminar.dev/). Library is based on handling and wrapping pointer events and **doesn't** depend on HTML draggable attribute.
 
 See [demo](https://blue-pitaya.github.io/laminar-dragging/) and [examples source](https://github.com/blue-pitaya/laminar-dragging/tree/master/example/src/main/scala/xyz/bluepitaya/example).
 
 ## Instalation
 
-Currently library isn't published anywhere, but it will changes soon.
+Currently library isn't published anywhere, but it will change soon.
 
 ## Basic example
 
@@ -84,17 +84,14 @@ This module extends drag events to add information about relative position to po
 ### Relative position
 
 ```scala
-draggingModule.componentEvents(id).map(RelativeDragging.getMapping(container))
-draggingModule.componentEvents(id).map(RelativeDragging.getMappingDynamic(getContainerFn))
+draggingModule.componentEvents(id).map(RelativeDragging.getMapping(containerCssQuery))
 
 case class Event(e: dom.PointerEvent, kind: DragEventKind, pos: Vec2f)
 ```
 
 Add position relative to container element. 
 
-First version takes size of container once, so if container is resized dragging will be acting strange.
-
-Second version takes function `dom.Element => Boolean` as parameter and search for container element in event target hierarchy. That means size of container is always up to date, but dragging don't work outside container.
+Function takes parameter for css query to find element (for example "#container"). This mapping return `Either[ContainerNotFound, Event]`.
 
 ## Development
 

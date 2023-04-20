@@ -8,9 +8,6 @@ import xyz.bluepitaya.laminardragging.Vec2f
 
 object RelativeExample {
   private val containerId = "container"
-  // get parent element by id attribute
-  private val getContainer: dom.Element => Boolean =
-    el => Option(el.getAttribute("id")).map(_ == containerId).getOrElse(false)
 
   def circleComponent(
       id: Int,
@@ -27,12 +24,11 @@ object RelativeExample {
       draggingModule.componentBindings(id),
       draggingModule
         .componentEvents(id)
-        .map(RelativeDragging.getMappingDynamic(getContainer)) --> { e =>
+        .map(RelativeDragging.getMapping(s"#${containerId}")) --> { e =>
         e match {
           // when container is not found it return this case class
-          case Left(RelativeDragging.ContainerNotFound(e, kind)) => dom
-              .console
-              .error(s"Parent container not found while drag event $kind.")
+          case Left(RelativeDragging.ContainerNotFound(e, kind)) =>
+            dom.console.error(s"Parent container not found.")
           case Right(RelativeDragging.Event(e, kind, pos)) => position.set(pos)
         }
       }
