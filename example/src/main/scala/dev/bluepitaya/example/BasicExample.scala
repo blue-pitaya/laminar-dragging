@@ -1,9 +1,9 @@
-package xyz.bluepitaya.example
+package dev.bluepitaya.example
 
 import com.raquo.laminar.api.L._
 import org.scalajs.dom
-import xyz.bluepitaya.laminardragging.Dragging
-import xyz.bluepitaya.laminardragging.DragEventKind
+import dev.bluepitaya.laminardragging.Dragging
+import dev.bluepitaya.laminardragging.DragEventKind
 
 object BasicExample {
   def component() = {

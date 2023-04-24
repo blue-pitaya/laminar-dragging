@@ -1,9 +1,9 @@
-package xyz.bluepitaya.example
+package dev.bluepitaya.example
 
 import com.raquo.laminar.api.L._
 import org.scalajs.dom
-import xyz.bluepitaya.laminardragging.Dragging
-import xyz.bluepitaya.laminardragging.Vec2f
+import dev.bluepitaya.laminardragging.Dragging
+import dev.bluepitaya.laminardragging.Vec2f
 
 object DeltaExample {
   def component() = {
@@ -13,7 +13,7 @@ object DeltaExample {
 
     val circlePosition = Vec2f(250, 250)
 
-    import xyz.bluepitaya.laminardragging.DragEventKind._
+    import dev.bluepitaya.laminardragging.DragEventKind._
     div(
       draggingModule.documentBindings,
       svg.svg(

@@ -1,4 +1,4 @@
-package xyz.bluepitaya.laminardragging
+package dev.bluepitaya.laminardragging
 
 import com.raquo.laminar.api.L._
 import org.scalajs.dom

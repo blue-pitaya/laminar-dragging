@@ -1,4 +1,4 @@
-package xyz.bluepitaya.laminardragging
+package dev.bluepitaya.laminardragging
 
 case class Vec2f(x: Double, y: Double) {
   def +(o: Vec2f) = Vec2f(x + o.x, y + o.y)

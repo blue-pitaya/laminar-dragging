@@ -1,9 +1,9 @@
-package xyz.bluepitaya.example
+package dev.bluepitaya.example
 
 import com.raquo.laminar.api.L._
 import org.scalajs.dom
-import xyz.bluepitaya.laminardragging.Dragging
-import xyz.bluepitaya.laminardragging.Vec2f
+import dev.bluepitaya.laminardragging.Dragging
+import dev.bluepitaya.laminardragging.Vec2f
 
 object DeltaExample2 {
   def circleComponent(
@@ -20,7 +20,7 @@ object DeltaExample2 {
         bp + dp
       }
 
-    import xyz.bluepitaya.laminardragging.DragEventKind._
+    import dev.bluepitaya.laminardragging.DragEventKind._
     svg.circle(
       svg.cx <-- position.map(_.x.toString()),
       svg.cy <-- position.map(_.y.toString()),

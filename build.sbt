@@ -3,7 +3,7 @@ import org.scalajs.linker.interface.OutputPatterns
 import org.scalajs.linker.interface.ModuleSplitStyle
 
 lazy val baseSettings = Seq(
-  organization := "xyz.bluepitaya",
+  organization := "dev.bluepitaya",
   scalaVersion := "2.13.8",
   version := "1.0"
 )

@@ -2,7 +2,7 @@
 
 Simple dragging logic library for [Laminar](https://laminar.dev/). Library is based on handling and wrapping pointer events fired while dragging. It **doesn't** depend on HTML draggable attribute.
 
-See [demo](https://blue-pitaya.github.io/laminar-dragging/) and [examples source](https://github.com/blue-pitaya/laminar-dragging/tree/master/example/src/main/scala/xyz/bluepitaya/example).
+See [demo](https://blue-pitaya.github.io/laminar-dragging/) and [examples source](https://github.com/blue-pitaya/laminar-dragging/tree/master/example/src/main/scala/dev/bluepitaya/example).
 
 ## Instalation
 
