@@ -12,9 +12,6 @@ object Main extends App {
     h1("Delta position dragging example - \"classic dragging\""),
     DeltaExample2.component(),
     h1("Relative dragging example"),
-    p(
-      "Dragging will not work outside container and circles are centered on drag."
-    ),
     RelativeExample.component()
   )
 
