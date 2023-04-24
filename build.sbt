@@ -23,6 +23,7 @@ lazy val example = (project in file("example"))
   .settings(baseSettings)
   .settings(
     name := "laminar-dragging",
+    scalacOptions := Seq("-Xlint"),
     libraryDependencies += "com.raquo" %%% "laminar" % "15.0.0-M7",
     scalaJSLinkerConfig ~= {
       _.withModuleKind(ModuleKind.ESModule)

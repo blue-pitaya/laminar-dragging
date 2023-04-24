@@ -2,7 +2,6 @@ package xyz.bluepitaya.example
 
 import com.raquo.laminar.api.L._
 import org.scalajs.dom
-import xyz.bluepitaya.laminardragging.DeltaDragging
 import xyz.bluepitaya.laminardragging.Dragging
 import xyz.bluepitaya.laminardragging.Vec2f
 
@@ -28,14 +27,15 @@ object DeltaExample2 {
       svg.r("20"),
       svg.fill("green"),
       draggingModule.componentBindings(id),
-      draggingModule.componentEvents(id).map(DeltaDragging.getMapping()) --> {
-        case DeltaDragging.Event(e, Move, deltaPos) =>
-          draggingPosition.set(deltaPos)
-        case DeltaDragging.Event(e, End, deltaPos) =>
-          val pos = draggingPosition.now()
-          draggingPosition.set(Vec2f(0, 0))
-          basePosition.update(_ + pos)
-        case _ => ()
+      Dragging.withDeltaPosition(draggingModule.componentEvents(id)) --> {
+        case (e, deltaPos) => e.kind match {
+            case Start => ()
+            case Move  => draggingPosition.set(deltaPos)
+            case End =>
+              val pos = draggingPosition.now()
+              draggingPosition.set(Vec2f(0, 0))
+              basePosition.update(_ + pos)
+          }
       }
     )
   }

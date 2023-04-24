@@ -86,4 +86,34 @@ object Dragging {
       currentDraggingIdSignal = currentDraggingId.signal
     )
   }
+
+  /** Get dragging position relative to other element. */
+  def getRelativePosition(e: Event, container: dom.Element): Vec2f = {
+    val event = e.e
+    val rect = container.getBoundingClientRect()
+    val x = event.pageX - (rect.x + dom.window.pageXOffset)
+    val y = event.pageY - (rect.y + dom.window.pageYOffset)
+
+    Vec2f(x, y)
+  }
+
+  /** Get dragging position relative to start dragging position. */
+  def withDeltaPosition(
+      componentEvents: EventStream[Event]
+  ): EventStream[(Event, Vec2f)] = {
+    val startPos = Var(Vec2f.zero)
+
+    componentEvents.map { e =>
+      val screenPos = Vec2f(e.e.screenX, e.e.screenY)
+      val deltaPos =
+        if (e.kind == DragEventKind.Start) {
+          startPos.set(screenPos)
+          Vec2f.zero
+        } else {
+          screenPos - startPos.now()
+        }
+
+      (e, deltaPos)
+    }
+  }
 }

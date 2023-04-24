@@ -2,8 +2,6 @@ package xyz.bluepitaya.example
 
 import com.raquo.laminar.api.L._
 import org.scalajs.dom
-import xyz.bluepitaya.laminardragging.DeltaDragging
-import xyz.bluepitaya.laminardragging.Dragging
 
 object Main extends App {
   val app = div(
