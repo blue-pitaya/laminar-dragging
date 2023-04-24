@@ -97,7 +97,7 @@ object Dragging {
     Vec2f(x, y)
   }
 
-  /** Get dragging position relative to start dragging position. */
+  /** Append dragging position relative to start dragging position. */
   def withDeltaPosition(
       componentEvents: EventStream[Event]
   ): EventStream[(Event, Vec2f)] = {

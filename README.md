@@ -1,6 +1,6 @@
 # Laminar dragging
 
-Simple dragging logic library for [Laminar](https://laminar.dev/). Library is based on handling and wrapping pointer events and **doesn't** depend on HTML draggable attribute.
+Simple dragging logic library for [Laminar](https://laminar.dev/). Library is based on handling and wrapping pointer events fired while dragging. It **doesn't** depend on HTML draggable attribute.
 
 See [demo](https://blue-pitaya.github.io/laminar-dragging/) and [examples source](https://github.com/blue-pitaya/laminar-dragging/tree/master/example/src/main/scala/xyz/bluepitaya/example).
 
@@ -67,31 +67,11 @@ case class DraggingModule[A](
 )
 ```
 
-## Extensions (mappings)
+## Utilities
 
-Basic `Dragging.Event` is not so useful and was created to be extended. There are some builtin mappings to enable more features.
+`def getRelativePosition(e: Event, container: dom.Element): Vec2f` - Get dragging position relative to other element. See `RelativeExample.scala` for use case.
 
-### Delta position
-
-```scala
-draggingModule.componentEvents(id).map(DeltaDragging.getMapping())
-
-case class Event(e: dom.PointerEvent, kind: DragEventKind, deltaPos: Vec2f)
-```
-
-This module extends drag events to add information about relative position to position where dragging started. This can be easily used for "classic" dragging. See example `DeltaExample2.scala`.
-
-### Relative position
-
-```scala
-draggingModule.componentEvents(id).map(RelativeDragging.getMapping(containerCssQuery))
-
-case class Event(e: dom.PointerEvent, kind: DragEventKind, pos: Vec2f)
-```
-
-Add position relative to container element. 
-
-Function takes parameter for css query to find element (for example "#container"). This mapping return `Either[ContainerNotFound, Event]`.
+`def withDeltaPosition(componentEvents: EventStream[Event]): EventStream[(Event, Vec2f)]` - Append dragging position relative to start dragging position. See `DeltaExample.scala` and `DeltaExample2.scala` for use cases.
 
 ## Development
 
