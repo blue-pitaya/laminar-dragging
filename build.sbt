@@ -16,6 +16,7 @@ lazy val baseSettings = Seq(
   developers :=
     List(
       Developer(
+        id = "blue.pitaya",
         name = "blue.pitaya",
         email = "blue.pitaya@pm.me",
         url = url("https://bluepitaya.dev")
