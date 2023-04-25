@@ -6,7 +6,9 @@ See [demo](https://blue-pitaya.github.io/laminar-dragging/) and [examples source
 
 ## Instalation
 
-Currently library isn't published anywhere, but it will change soon.
+```scala
+libraryDependencies += "dev.bluepitaya" %%% "laminar-dragging" % "1.0"
+```
 
 ## Basic example
 
