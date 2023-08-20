@@ -31,7 +31,7 @@ lazy val baseSettings = Seq(
   },
   publishMavenStyle := true,
   scalaVersion := "2.13.8",
-  version := "1.0"
+  version := "1.1"
 )
 
 lazy val root = (project in file("."))
@@ -40,7 +40,7 @@ lazy val root = (project in file("."))
   .settings(
     name := "laminar-dragging",
     scalacOptions := Seq("-Xlint"),
-    libraryDependencies += "com.raquo" %%% "laminar" % "15.0.0-M7",
+    libraryDependencies += "com.raquo" %%% "laminar" % "16.0.0",
     libraryDependencies += "org.scalatest" %%% "scalatest" % "3.2.15" % Test
   )
   .settings(

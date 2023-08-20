@@ -6,8 +6,10 @@ See [demo](https://blue-pitaya.github.io/laminar-dragging/) and [examples source
 
 ## Instalation
 
+For Laminar v16.0.0:
+
 ```scala
-libraryDependencies += "dev.bluepitaya" %%% "laminar-dragging" % "1.0"
+libraryDependencies += "dev.bluepitaya" %%% "laminar-dragging" % "1.1"
 ```
 
 ## Basic example
